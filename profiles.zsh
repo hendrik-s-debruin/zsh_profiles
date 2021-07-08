@@ -1,3 +1,7 @@
+function profedit() {
+	$EDITOR ~/.config/zsh/profiles
+}
+
 function profile() {
 	# ============================= Module Globals =============================
 	# File where loaded profiles are listed
