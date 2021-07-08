@@ -1,7 +1,3 @@
-function profedit() {
-	$EDITOR ~/.config/zsh/profiles
-}
-
 function profile() {
 	# ============================= Module Globals =============================
 	# File where loaded profiles are listed
@@ -141,14 +137,19 @@ function profile() {
 
 	# ----------------------------- Edit a Profile -----------------------------
 	function edit() {
-		if [ $# -ne  1 ]; then
-			echo "Usage: $0 <profile name>"
-			return 1
+		if [ $# -eq 1 ]; then
+			profile=$1
+			$EDITOR $LOCAL_PROFILES_DIR/$profile.zsh
+			return
 		fi
 
-		profile=$1
+		if [ $# -eq 0 ]; then
+			$EDITOR $LOCAL_PROFILES_DIR
+			return
+		fi
 
-		$EDITOR $LOCAL_PROFILES_DIR/$profile.zsh
+		echo "Usage: $0 [profile name]"
+		return 1
 	}
 	__register_subcommand "edit"
 
